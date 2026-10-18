@@ -1,0 +1,189 @@
+{
+  "users": [
+    {
+      "id": "32c59820-b7d6-4174-9d55-67e206c03681",
+      "createdAt": "2026-10-18T04:51:15.476Z",
+      "email": "ruksana13sr@gmail.com",
+      "passwordHash": "$2a$10$nI.HKuQt1JZxAkfpUspapegx.iW11Is2tLP/FRfQFBrjMnDVyuWfe",
+      "name": "ruksana",
+      "college": "VIT VELLORE",
+      "rollNumber": null,
+      "degreeType": "Other",
+      "branch": "cse",
+      "year": "2029",
+      "bio": null,
+      "location": null,
+      "links": {},
+      "gradingScale": "vit",
+      "customScale": null
+    },
+    {
+      "id": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "createdAt": "2026-10-18T04:51:46.005Z",
+      "email": "xys@gmail.com",
+      "passwordHash": "$2a$10$NkkiL80lLebMkF4PoGneWO4rOVASIySvXiNKWOFCG0t9i5jC/kMNm",
+      "name": "xxx",
+      "college": "VIT VELLORE",
+      "rollNumber": null,
+      "degreeType": "Other",
+      "branch": "cse",
+      "year": "2029",
+      "bio": null,
+      "location": null,
+      "links": {},
+      "gradingScale": "vit",
+      "customScale": null
+    }
+  ],
+  "semesters": [
+    {
+      "id": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "createdAt": "2026-10-18T04:56:51.037Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "name": "Semester 1",
+      "startDate": null,
+      "endDate": null
+    }
+  ],
+  "courses": [
+    {
+      "id": "0a2561e3-3b9a-4e5c-be28-4e8e55f78346",
+      "createdAt": "2026-10-18T04:56:51.046Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BCHY101",
+      "name": "Engineering Chemistry 3",
+      "credits": 4,
+      "grade": "A"
+    },
+    {
+      "id": "b6b6e21e-437d-4e20-943c-6acbe0c52803",
+      "createdAt": "2026-10-18T04:56:51.052Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BMAT101",
+      "name": "Calculus and Linear Algebra 4",
+      "credits": 3,
+      "grade": "A+"
+    },
+    {
+      "id": "701439bc-5180-49b8-9b42-3a1649337120",
+      "createdAt": "2026-10-18T04:56:51.059Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BPHY101",
+      "name": "Engineering Physics 3",
+      "credits": 3,
+      "grade": "B+"
+    },
+    {
+      "id": "cc93d7f8-e7a8-4618-8ccf-6ca460b936de",
+      "createdAt": "2026-10-18T04:56:51.064Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BCSE101",
+      "name": "Programming in C 4",
+      "credits": 2,
+      "grade": "A+"
+    },
+    {
+      "id": "b20c45c6-fd02-4f70-b721-259af3fb4ba2",
+      "createdAt": "2026-10-18T04:56:51.068Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BENG101",
+      "name": "Technical English 2",
+      "credits": 1,
+      "grade": "A"
+    },
+    {
+      "id": "30f029ea-3e1d-4ea3-a71d-cdc79d772fb4",
+      "createdAt": "2026-10-18T04:56:51.071Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BEEE101",
+      "name": "Basic Electrical Engineering 3",
+      "credits": 3,
+      "grade": "B"
+    },
+    {
+      "id": "8151c335-0333-4d04-9b30-82b5cbe6fae6",
+      "createdAt": "2026-10-18T04:56:51.076Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BCSE102",
+      "name": "Programming Lab 2",
+      "credits": 3,
+      "grade": "S"
+    },
+    {
+      "id": "01bf0322-aca4-4a61-97be-53451e6c125a",
+      "createdAt": "2026-10-18T04:56:51.080Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "semesterId": "21c1f84b-40b9-407b-994f-a4d6ef145df7",
+      "code": "BPHY102",
+      "name": "Physics Lab 1",
+      "credits": 0,
+      "grade": "A+"
+    }
+  ],
+  "folders": [],
+  "certificates": [
+    {
+      "id": "675e4938-dea9-4146-85b4-697730c043a6",
+      "createdAt": "2026-10-18T04:53:11.111Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "folderId": null,
+      "filename": "hacakthon.pdf",
+      "storedPath": "C:\\Users\\ruksa\\OneDrive\\Desktop\\skillvault\\server\\storage\\uploads\\certificates\\e8b6f2f59677e8ceabdfd0e033b74cd8",
+      "mimeType": "application/pdf",
+      "size": 606277,
+      "hash": "4a884fd34e155d55b7ad0293ec27708396458c832d44128c4afd8e562f2ed229",
+      "extractedText": "\n",
+      "verification": {
+        "status": "not_verified",
+        "confidence": 0.15,
+        "method": "pdf-text",
+        "qrUrl": null,
+        "issues": [
+          "No certificate-like language found in the document",
+          "Could not confidently extract recipient/event/date fields",
+          "Very little readable text found in the document"
+        ],
+        "extractedFields": {
+          "recipient_name": null,
+          "event_name": null,
+          "organization": null,
+          "date": null,
+          "position_achievement": null
+        }
+      }
+    },
+    {
+      "id": "86d18770-183b-4768-84f3-e1c1a77aa913",
+      "createdAt": "2026-10-18T04:54:06.868Z",
+      "userId": "74c0bb47-2160-4afe-91e5-b33dd1c5e990",
+      "folderId": null,
+      "filename": "NOC26HS58S308550775904831835.pdf",
+      "storedPath": "C:\\Users\\ruksa\\OneDrive\\Desktop\\skillvault\\server\\storage\\uploads\\certificates\\13688d53474a59322a0d151186fae619",
+      "mimeType": "application/pdf",
+      "size": 1565494,
+      "hash": "bd962cc256af30c168977549cd3b7b50b14ce27111bed95c0a36b2b348ad4ea7",
+      "extractedText": null,
+      "verification": {
+        "status": "verified",
+        "confidence": 0.95,
+        "method": "qr",
+        "qrUrl": "https://nptel.ac.in/noc/E_Certificate/NOC26HS58S308550775904831835",
+        "issues": [],
+        "extractedFields": {
+          "recipient_name": null,
+          "event_name": null,
+          "organization": null,
+          "date": null,
+          "position_achievement": null
+        }
+      }
+    }
+  ]
+}

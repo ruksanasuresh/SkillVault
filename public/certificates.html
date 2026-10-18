@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificates — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+    <nav class="side-nav">
+      <a href="dashboard.html"><span class="dot-ic"></span>Dashboard</a>
+      <a href="certificates.html" class="active"><span class="dot-ic"></span>Certificates</a>
+      <a href="resume.html"><span class="dot-ic"></span>Resume</a>
+      <a href="index.html"><span class="dot-ic"></span>Back to site</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="avatar"></div>
+      <div><div class="h3" id="side-name" style="font-size:0.88rem;">—</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="label">CERTIFICATES</div>
+        <h1 class="h1" style="margin-top:8px;">Your certificates</h1>
+      </div>
+      <div>
+        <input type="file" id="cert-file" accept=".pdf,.png,.jpg,.jpeg,.webp" style="display:none;">
+        <button class="btn btn-primary" id="upload-btn">+ Upload certificate</button>
+      </div>
+    </div>
+
+    <div id="error-box"></div>
+    <div id="upload-status"></div>
+
+    <div class="cert-layout">
+      <div class="card">
+        <h3 class="h3" style="margin-bottom:14px;">Folders</h3>
+        <div class="folder-list" id="folder-list"></div>
+        <div class="new-folder-row">
+          <input id="new-folder-name" placeholder="New folder">
+          <button class="icon-btn" id="new-folder-btn">Add</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="h3" id="folder-title">All certificates</h3>
+          <span class="caption" id="cert-count">0</span>
+        </div>
+        <div class="cert-grid" id="cert-grid"><div class="empty-state">No certificates yet — upload your first one.</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Certificate detail modal -->
+<div class="modal-overlay hidden" id="detail-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 class="h2" id="detail-title">Certificate</h2>
+      <button class="modal-close" id="detail-close">×</button>
+    </div>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/certificates.js"></script>
+</body>
+</html>

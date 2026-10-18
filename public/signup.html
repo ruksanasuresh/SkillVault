@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build your vault — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-visual">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+    <div>
+      <div class="quote">"Your work already happened. Give it a record recruiters can trust."</div>
+      <div class="quote-attr">— Every verified certificate, one profile</div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <h1 class="h1">Build your vault</h1>
+      <p class="body">Set up your profile once — grades, certificates and recommendations build on it.</p>
+
+      <div id="error-box"></div>
+
+      <form id="signup-form">
+        <div class="field-row">
+          <div class="field"><label for="name">Full name</label><input id="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" required>
+          <div class="strength-options" id="strength-options" style="margin-top:10px;">
+            <div class="strength-chip" data-level="basic">Basic</div>
+            <div class="strength-chip active" data-level="medium">Medium</div>
+            <div class="strength-chip" data-level="strong">Strong</div>
+            <div class="strength-chip" data-level="extra">Extra (breach check)</div>
+          </div>
+          <div class="field-hint" id="strength-hint">8+ characters, at least 1 letter and 1 number</div>
+        </div>
+
+        <div class="field">
+          <label for="college">College</label>
+          <input id="college" list="college-list" placeholder="Start typing your college...">
+          <datalist id="college-list"></datalist>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="degreeType">Degree</label>
+            <select id="degreeType">
+              <option value="">Select</option>
+              <option>B.Tech</option><option>B.E</option><option>B.Sc</option><option>BCA</option>
+              <option>MCA</option><option>M.Tech</option><option>MBA</option><option>B.Com</option>
+              <option>Diploma</option><option>PhD</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="branch">Branch</label>
+            <select id="branch">
+              <option value="">Select</option>
+              <option value="cse">CSE / AI / Data Science</option>
+              <option value="ece">ECE / Electronics</option>
+              <option value="mechanical">Mechanical</option>
+              <option value="civil">Civil</option>
+              <option value="eee">EEE</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label for="year">Year of graduation</label><input id="year" placeholder="2027"></div>
+          <div class="field">
+            <label for="gradingScale">Grading scale</label>
+            <select id="gradingScale">
+              <option value="vit">VIT grading (S–F)</option>
+              <option value="tenpoint">10-point CGPA (O–F)</option>
+              <option value="percentage">Percentage (0–100)</option>
+              <option value="letter">Letter (A–F)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Create my vault</button>
+      </form>
+
+      <div class="auth-foot">Already have an account? <a href="login.html" style="color:var(--primary); font-weight:600;">Log in</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+let strengthLevel = 'medium';
+const hints = {
+  basic: 'At least 8 characters',
+  medium: '8+ characters, at least 1 letter and 1 number',
+  strong: '8+ characters, upper, lower, number and symbol',
+  extra: 'Strong rules, plus checked against known data breaches',
+};
+document.querySelectorAll('.strength-chip').forEach((chip) => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.strength-chip').forEach((c) => c.classList.remove('active'));
+    chip.classList.add('active');
+    strengthLevel = chip.dataset.level;
+    document.getElementById('strength-hint').textContent = hints[strengthLevel];
+  });
+});
+
+// college autocomplete
+document.getElementById('college').addEventListener('input', async (e) => {
+  const q = e.target.value;
+  if (q.length < 2) return;
+  try {
+    const list = await API.get('/api/auth/colleges?q=' + encodeURIComponent(q));
+    document.getElementById('college-list').innerHTML = list.map((c) => `<option value="${c}">`).join('');
+  } catch { /* ignore */ }
+});
+
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorBox = document.getElementById('error-box');
+  errorBox.innerHTML = '';
+  try {
+    const { token, user } = await API.post('/api/auth/register', {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+      passwordLevel: strengthLevel,
+      college: document.getElementById('college').value || null,
+      degreeType: document.getElementById('degreeType').value || null,
+      branch: document.getElementById('branch').value || null,
+      year: document.getElementById('year').value || null,
+      gradingScale: document.getElementById('gradingScale').value,
+    });
+    API.setToken(token);
+    API.setUser(user);
+    window.location.href = 'dashboard.html';
+  } catch (err) {
+    errorBox.innerHTML = `<div class="alert alert-error">${err.message}</div>`;
+  }
+});
+</script>
+</body>
+</html>

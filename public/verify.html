@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verify a certificate — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+  <div></div>
+  <div class="nav-cta"><a href="login.html" class="btn btn-ghost">Log in</a></div>
+</nav>
+
+<section class="container" style="max-width:640px; padding-top:48px;">
+  <div class="label">RECRUITER / VERIFIER LOOKUP</div>
+  <h1 class="h1" style="margin-top:10px;">Verify a certificate</h1>
+  <p class="body" style="margin-top:10px;">Paste the certificate ID from a SkillVault QR code or share link to check its verification status — no need to contact the student or institution.</p>
+
+  <form id="verify-form" style="margin-top:28px; display:flex; gap:10px;">
+    <input id="cert-id" placeholder="Certificate ID" style="flex:1; padding:13px 14px; border:1px solid var(--border); border-radius:10px;">
+    <button class="btn btn-primary">Check</button>
+  </form>
+
+  <div id="result" style="margin-top:28px;"></div>
+</section>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById('verify-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('cert-id').value.trim();
+  const box = document.getElementById('result');
+  box.innerHTML = '';
+  if (!id) return;
+  try {
+    const data = await API.get(`/api/certificates/${encodeURIComponent(id)}/verify-info`);
+    const v = data.verification;
+    const statusClass = v.status === 'verified' ? 'verified' : v.status === 'suspicious' ? 'suspicious' : 'not_verified';
+    const statusLabel = v.status === 'verified' ? '✓ Verified' : v.status === 'suspicious' ? 'Suspicious — needs review' : 'Not verified';
+    box.innerHTML = `
+      <div class="card">
+        <div class="card-head">
+          <h3 class="h3">${data.filename}</h3>
+          <span class="status-pill ${statusClass}">${statusLabel}</span>
+        </div>
+        <p class="body-sm">Owner: ${data.ownerName}</p>
+        <p class="body-sm">Uploaded: ${new Date(data.uploadedAt).toLocaleDateString()}</p>
+        <p class="body-sm">Confidence: ${Math.round((v.confidence || 0) * 100)}%</p>
+        <p class="caption" style="margin-top:10px; word-break:break-all;">SHA-256: ${data.hash}</p>
+        ${v.issues && v.issues.length ? `<div class="issues-list">${v.issues.map((i) => `• ${i}`).join('<br>')}</div>` : ''}
+      </div>`;
+  } catch (err) {
+    box.innerHTML = `<div class="alert alert-error">${err.message}</div>`;
+  }
+});
+</script>
+</body>
+</html>

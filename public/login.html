@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-visual">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+    <div>
+      <div class="quote">"One verified profile. Every grade, every certificate, every skill."</div>
+      <div class="quote-attr">— Welcome back</div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <h1 class="h1">Welcome back</h1>
+      <p class="body">Log in to see your vault.</p>
+
+      <div id="error-box"></div>
+
+      <form id="login-form">
+        <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+        <div class="field"><label for="password">Password</label><input id="password" type="password" required></div>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+
+      <div class="auth-foot">New here? <a href="signup.html" style="color:var(--primary); font-weight:600;">Build your vault</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorBox = document.getElementById('error-box');
+  errorBox.innerHTML = '';
+  try {
+    const { token, user } = await API.post('/api/auth/login', {
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+    });
+    API.setToken(token);
+    API.setUser(user);
+    window.location.href = 'dashboard.html';
+  } catch (err) {
+    errorBox.innerHTML = `<div class="alert alert-error">${err.message}</div>`;
+  }
+});
+</script>
+</body>
+</html>

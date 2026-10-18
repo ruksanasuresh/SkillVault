@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav no-print">
+  <a href="dashboard.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+  <div></div>
+  <div class="nav-cta">
+    <a href="dashboard.html" class="btn btn-ghost">← Dashboard</a>
+    <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+</nav>
+
+<div id="error-box" class="container no-print"></div>
+
+<div class="resume-page" id="resume-root">
+  <div class="empty-state">Loading your resume…</div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+if (!requireAuthOrRedirect()) { /* redirected */ }
+
+async function load() {
+  try {
+    const data = await API.get('/api/resume');
+    render(data);
+  } catch (err) {
+    document.getElementById('error-box').innerHTML = `<div class="alert alert-error">${err.message}</div>`;
+  }
+}
+
+function render(data) {
+  const p = data.profile;
+  const links = Object.entries(p.links || {}).filter(([, v]) => v);
+  document.getElementById('resume-root').innerHTML = `
+    <div class="resume-header">
+      <div class="display-lg" style="font-size:2.2rem;">${p.name}</div>
+      <p class="body" style="margin-top:6px;">
+        ${[p.degreeType, p.branch, p.college].filter(Boolean).join(' · ')}
+        ${p.location ? ` — ${p.location}` : ''}
+      </p>
+      <p class="body-sm">${p.email}${links.length ? ' · ' + links.map(([k, v]) => `<a href="${v}" style="color:var(--primary);">${k}</a>`).join(' · ') : ''}</p>
+    </div>
+
+    ${p.bio ? `<div class="resume-section"><p class="body">${p.bio}</p></div>` : ''}
+
+    <div class="resume-section">
+      <h3>Academic record</h3>
+      <div class="resume-item"><span>CGPA</span><strong>${data.cgpa || '—'}</strong></div>
+      ${data.semesters.map((s) => `
+        <div style="margin-bottom:12px;">
+          <strong style="font-size:0.88rem;">${s.name}</strong>
+          ${s.courses.map((c) => `<div class="resume-item"><span>${c.name}${c.code ? ` (${c.code})` : ''}</span><span>${c.grade || '—'}</span></div>`).join('')}
+        </div>
+      `).join('') || '<p class="body-sm">No semesters recorded yet.</p>'}
+    </div>
+
+    <div class="resume-section">
+      <h3>Verified certificates</h3>
+      ${data.certificates.length ? data.certificates.map((c) => `
+        <div class="resume-item">
+          <span>${c.event || c.filename}${c.achievement ? ` — ${c.achievement}` : ''}</span>
+          <span class="caption">${c.date || ''}</span>
+        </div>
+      `).join('') : '<p class="body-sm">No verified certificates yet — get some certificates verified to have them appear here.</p>'}
+    </div>
+
+    ${data.skills.length ? `
+    <div class="resume-section">
+      <h3>Skills</h3>
+      ${data.skills.map((s) => `<span class="resume-skill-chip">${s.name}</span>`).join('')}
+    </div>` : ''}
+  `;
+}
+
+load();
+</script>
+</body>
+</html>

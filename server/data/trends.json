@@ -1,0 +1,73 @@
+{
+  "updated": "2026-week-38",
+  "branches": {
+    "cse": {
+      "label": "CSE / AI / Data Science",
+      "signals": ["Skills-over-degrees hiring shift", "Generative AI engineer & AI specialist roles leading demand", "Internship experience weighted heavily"],
+      "trending_skills": [
+        { "skill": "Cloud Architecture", "growth": "+40%" },
+        { "skill": "LLM Ops / Prompt Engineering", "growth": "+35%" },
+        { "skill": "System Design", "growth": "+22%" },
+        { "skill": "Data Engineering", "growth": "+18%" }
+      ],
+      "certifications": ["AWS Cloud Practitioner", "Google Cloud Associate Engineer", "Kaggle competition track"],
+      "event_types": ["AI/ML hackathons", "Open-source contribution sprints", "Kaggle competitions"]
+    },
+    "ece": {
+      "label": "ECE / Electronics",
+      "signals": ["Semiconductor incentive push", "AI chip boom", "5G/6G rollout"],
+      "trending_skills": [
+        { "skill": "VLSI Design", "growth": "+33%" },
+        { "skill": "Embedded Systems", "growth": "+28%" },
+        { "skill": "AIoT", "growth": "+24%" },
+        { "skill": "Verilog / VHDL", "growth": "+20%" }
+      ],
+      "certifications": ["ARM embedded certification", "IEEE VLSI design track"],
+      "event_types": ["IEEE VLSI design contests", "Embedded systems hackathons"]
+    },
+    "mechanical": {
+      "label": "Mechanical / Core Engineering",
+      "signals": ["EV transition", "Robotics integration", "AI-driven manufacturing"],
+      "trending_skills": [
+        { "skill": "CAD / CAE", "growth": "+26%" },
+        { "skill": "Python for Automation", "growth": "+24%" },
+        { "skill": "Battery Systems", "growth": "+30%" },
+        { "skill": "Robotics", "growth": "+21%" }
+      ],
+      "certifications": ["SolidWorks/CATIA certification", "Six Sigma Green Belt"],
+      "event_types": ["SAE BAJA", "Robotics competitions", "EV design challenges"]
+    },
+    "civil": {
+      "label": "Civil Engineering",
+      "signals": ["Large infrastructure investment", "Smart-city programs"],
+      "trending_skills": [
+        { "skill": "BIM", "growth": "+27%" },
+        { "skill": "Project Management", "growth": "+19%" },
+        { "skill": "Sustainable Materials", "growth": "+23%" }
+      ],
+      "certifications": ["Autodesk BIM certification", "PMP foundations"],
+      "event_types": ["Smart city challenges", "Construction-tech hackathons"]
+    },
+    "eee": {
+      "label": "EEE / Electrical",
+      "signals": ["Renewable energy grid expansion", "EV charging infrastructure"],
+      "trending_skills": [
+        { "skill": "Power Electronics", "growth": "+22%" },
+        { "skill": "Renewable Systems", "growth": "+25%" },
+        { "skill": "SCADA / Automation", "growth": "+17%" }
+      ],
+      "certifications": ["Siemens automation certification"],
+      "event_types": ["Renewable energy hackathons", "Grid automation challenges"]
+    },
+    "other": {
+      "label": "General / Other",
+      "signals": ["Employers weighting demonstrated projects over pedigree"],
+      "trending_skills": [
+        { "skill": "Data Literacy", "growth": "+18%" },
+        { "skill": "Communication & Documentation", "growth": "+12%" }
+      ],
+      "certifications": ["Domain-relevant foundational certification"],
+      "event_types": ["Cross-discipline hackathons", "Case competitions"]
+    }
+  }
+}

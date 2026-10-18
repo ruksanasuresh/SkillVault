@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — SkillVault</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>SkillVault</a>
+    <nav class="side-nav">
+      <a href="dashboard.html" class="active"><span class="dot-ic"></span>Dashboard</a>
+      <a href="certificates.html"><span class="dot-ic"></span>Certificates</a>
+      <a href="resume.html"><span class="dot-ic"></span>Resume</a>
+      <a href="index.html"><span class="dot-ic"></span>Back to site</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="avatar"></div>
+      <div>
+        <div class="h3" id="side-name" style="font-size:0.88rem;">—</div>
+        <div class="caption" id="side-meta">—</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="label">WELCOME BACK</div>
+        <h1 class="h1" id="welcome-name" style="margin-top:8px;">Your Vault</h1>
+      </div>
+      <div style="display:flex; gap:12px;">
+        <button class="btn btn-primary" id="add-semester-btn">+ Add semester</button>
+        <button class="btn btn-ghost" id="logout-btn">Log out</button>
+      </div>
+    </div>
+
+    <div id="error-box"></div>
+
+    <div class="grid-2-even" style="margin-bottom:20px;">
+      <div class="card stat-card">
+        <div class="label">CURRENT CGPA</div>
+        <div class="stat-value" id="stat-cgpa">—</div>
+        <div class="stat-trend up" id="stat-scale">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="label">CERTIFICATES</div>
+        <div class="stat-value" id="stat-certs">—</div>
+        <div class="stat-trend up" id="stat-certs-sub">—</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card" id="grades-section">
+        <div class="card-head">
+          <h3 class="h3">Semesters</h3>
+          <span class="caption" id="sem-count">0 semesters</span>
+        </div>
+        <div id="semesters-list"><div class="empty-state">No semesters yet — add your first one.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3 class="h3">Skill graph</h3></div>
+        <div id="skill-bars"></div>
+      </div>
+    </div>
+
+    <div class="card" id="certs-section" style="margin-bottom:20px;">
+      <div class="card-head">
+        <h3 class="h3">Recent certificates</h3>
+        <a href="certificates.html" class="caption" style="color:var(--primary); font-weight:600;">Manage all →</a>
+      </div>
+      <div class="cert-grid" id="cert-grid-preview"><div class="empty-state">No certificates yet.</div></div>
+    </div>
+
+    <div class="card" id="rec-section">
+      <div class="card-head">
+        <h3 class="h3">Recommendations for you</h3>
+        <span class="caption" id="rec-branch">—</span>
+      </div>
+      <div id="rec-list"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Semester modal -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 class="h2">Add a semester</h2>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="manual">Manual entry</button>
+      <button class="tab-btn" data-tab="paste">Paste & extract</button>
+      <button class="tab-btn" data-tab="upload">Upload document</button>
+    </div>
+
+    <!-- Manual entry -->
+    <div class="tab-panel active" id="tab-manual">
+      <div class="field"><label>Semester name</label><input id="manual-sem-name" placeholder="e.g. Fall 2025-26"></div>
+      <table class="preview-table" id="manual-table">
+        <thead><tr><th>Code</th><th>Course name</th><th>Credits</th><th>Grade</th><th></th></tr></thead>
+        <tbody id="manual-rows"></tbody>
+      </table>
+      <button class="btn btn-ghost" id="manual-add-row" style="margin-top:10px;">+ Add row</button>
+      <div class="row-actions">
+        <button class="btn btn-primary" id="manual-save">Save semester</button>
+      </div>
+    </div>
+
+    <!-- Paste & extract -->
+    <div class="tab-panel" id="tab-paste">
+      <div class="field">
+        <label>Paste your grades — VTOP dump, WhatsApp forward, a copied table, anything</label>
+        <textarea id="paste-text" class="paste-area" placeholder="Semester 5 Fall 2024-25&#10;CSE3001 Software Engineering S 4&#10;CSE3002 Compiler Design A 3"></textarea>
+      </div>
+      <button class="btn btn-primary" id="paste-extract">Extract</button>
+      <div id="paste-preview"></div>
+    </div>
+
+    <!-- Upload document -->
+    <div class="tab-panel" id="tab-upload">
+      <div class="dropzone" id="dropzone">
+        <input type="file" id="doc-file" accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+        <p class="body">Click to choose a PDF, scan or photo of your grade sheet</p>
+        <p class="caption" id="doc-filename"></p>
+      </div>
+      <button class="btn btn-primary" id="doc-extract" style="margin-top:16px;">Extract</button>
+      <div id="doc-preview"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
